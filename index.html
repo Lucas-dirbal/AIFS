@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time de Futsal Feminino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.6); /* alterado para preto */
+            pointer-events: none;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+        
+        .wave-shape .shape-fill {
+            fill: #FACC15;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+</style>
+</head>
+<body class="min-h-screen flex flex-col" style="background-color: #FFF9C4; overflow-x: hidden;">
+    <main class="flex-grow flex items-center justify-center py-8 px-2 sm:py-12 sm:px-4">
+        <div class="w-full max-w-md sm:max-w-2xl mx-auto text-center relative z-10">
+            <div class="bg-white rounded-xl shadow-2xl p-4 sm:p-8 md:p-12 transform transition-all duration-500 hover:scale-105">
+                <div class="mb-6 sm:mb-8">
+                    <div class="floating inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 sm:h-24 sm:w-24 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
+                    Que bom que você está aqui!
+                </h2>
+                
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8">
+                    Aproveite e nos siga nas redes sociais para acompanhar nossas conquistas, jogos e novidades!
+                </p>
+                
+                <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 mb-6 sm:mb-8">
+                    <a href="https://www.facebook.com/futsalfemininoaifs/?ref=_xav_ig_profile_page_web" class="social-icon bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full" target="_blank" rel="noopener">
+                        <i class="fab fa-facebook-f text-lg sm:text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/aaifsindependente/" class="social-icon bg-pink-600 hover:bg-pink-700 text-white p-3 sm:p-4 rounded-full" target="_blank" rel="noopener">
+                        <i class="fab fa-instagram text-lg sm:text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-red-600 hover:bg-red-700 text-white p-3 sm:p-4 rounded-full" target="_blank" rel="noopener">
+                        <i class="fab fa-youtube text-lg sm:text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-blue-400 hover:bg-blue-500 text-white p-3 sm:p-4 rounded-full" target="_blank" rel="noopener">
+                        <i class="fab fa-twitter text-lg sm:text-xl"></i>
+                    </a>
+                </div>
+                
+                <button class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-base sm:text-lg">
+                    Próximo Jogo
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.querySelector('main div');
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                mainContent.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Create random floating balls
+        function createBalls() {
+            const colors = [
+                '#FACC15', // amarelo Tailwind Tailwind
+                '#FFE066', // amarelo claro claro
+                '#FFD600', // amarelo vibrante vibrante
+                '#FFF9C4'  // amarelo bem claroelo bem claro
+            ];
+            
+            for (let i = 0; i < 15; i++) {
+                const ball = document.createElement('div');
+                ball.classList.add('ball');
+                     
+                // Random size between 20px and 100px
+                const size = Math.random() * 80 + 20;
+                ball.style.width = `${size}px`;
+                ball.style.height = `${size}px`;
+                
+                // Random position
+                ball.style.left = `${Math.random() * 100}%`;
+                ball.style.bottom = `${Math.random() * 20}%`;
+                  
+                // Random color
+                ball.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation delay and duration
+                ball.style.animationDelay = `${Math.random() * 5}s`;
+                ball.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                
+                document.body.appendChild(ball);
+            }
+        }
+        
+        createBalls();
+    </script>
+</body>
+</html>
